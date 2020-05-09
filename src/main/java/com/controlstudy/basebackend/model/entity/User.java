@@ -16,15 +16,25 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUser;
 	
+	@Column(name = "name")
+	private String name;
+	
 	@Column(name = "email")
 	private String email;
 	
 	@Column(name = "password")
 	private String password;
 	
-	// Constructor
+	// Constructors
 	public User() {
 		super();
+	}
+	
+	public User(String name, String email, String password) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
 	}
 	
 	// Getters and Setters
