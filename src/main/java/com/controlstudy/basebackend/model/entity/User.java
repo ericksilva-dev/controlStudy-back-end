@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class User {
 	
 	@Id
-	@Column(name = "idUser")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUser;
 	
@@ -22,7 +22,7 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "password")
+	@Column(name = "senha")
 	private String password;
 	
 	// Constructors
