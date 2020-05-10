@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.controlstudy.basebackend.exception.ErrorBuilder;
 import com.controlstudy.basebackend.exception.MessageBuilder;
 import com.controlstudy.basebackend.model.entity.User;
 import com.controlstudy.basebackend.repository.UserRepository;
@@ -25,10 +26,10 @@ public class UserServiceImplementation implements UserService {
 	public User authentication(String email, String password) {
 		Optional<User> user = repository.findByEmail(email);
 		if(!user.isPresent()) {
-			
+			throw new ErrorBuilder("Não existe registro!!!");
 		}
-		if(user.get().getPassword().equals(password)) {
-			
+		if(!user.get().getPassword().equals(password)) {
+			throw new ErrorBuilder("Usuário ou Senha inválido");
 		}
 		return user.get();
 	}
