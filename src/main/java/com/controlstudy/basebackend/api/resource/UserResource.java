@@ -25,9 +25,10 @@ public class UserResource {
 	
 	@PostMapping("/signUp")
 	public ResponseEntity registerUser( @RequestBody UserDTO userDto) {
+		User registeredUser = new User(userDto.getName(), userDto.getEmail(), userDto.getPassword());
 		try {
-			User registeredUser = new User(userDto.getName(), userDto.getEmail(), userDto.getPassword());
-			return new ResponseEntity(registeredUser, HttpStatus.CREATED);
+			User userSave = serviceUser.register(registeredUser);
+			return new ResponseEntity(userSave, HttpStatus.CREATED);
 		} catch (MessageBuilder e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
